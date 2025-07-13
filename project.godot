@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EventBus="*res://scripts/globals/event_bus.gd"
 InputManager="*res://scripts/globals/input_manager.gd"
+Globals="*res://scripts/globals/globals.gd"
 
 [debug]
 
@@ -26,7 +27,7 @@ gdscript/warnings/unused_signal=0
 
 [display]
 
-window/size/viewport_width=320
+window/size/viewport_width=640
 window/size/viewport_height=640
 window/stretch/mode="viewport"
 
