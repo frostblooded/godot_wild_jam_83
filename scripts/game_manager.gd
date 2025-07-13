@@ -24,6 +24,6 @@ func on_life_lost() -> void:
     else:
         _lives_label.text = "GAME OVER"
 
-func on_score_increased() -> void:
-    _current_score += 1
+func on_score_increased(amount: int) -> void:
+    _current_score += amount
     _score_label.text = "Score: " + str(_current_score)

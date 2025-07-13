@@ -1,4 +1,4 @@
 extends Node
 
 signal lost_life
-signal increased_score
+signal increased_score(amount: int)

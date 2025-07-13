@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnau411wgulhu"]
+
+[ext_resource type="Shader" uid="uid://b8vrup4frlrjp" path="res://assets/guide_shader.gdshader" id="1_kih43"]
+[ext_resource type="Texture2D" uid="uid://8xcg2e43l8ad" path="res://icon.svg" id="2_fiqxm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_giin0"]
+shader = ExtResource("1_kih43")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/diameter = 1.0
+shader_parameter/thickness = 0.05
+shader_parameter/frequency = 10.0
+shader_parameter/phase = 0.0
+
+[node name="LastMeteorHitGuide" type="Sprite2D"]
+material = SubResource("ShaderMaterial_giin0")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_fiqxm")

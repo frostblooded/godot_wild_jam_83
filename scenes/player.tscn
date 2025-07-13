@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://1odw32oe70ww"]
+[gd_scene load_steps=5 format=3 uid="uid://1odw32oe70ww"]
 
 [ext_resource type="Script" uid="uid://b0pftqqmrhrdh" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cbeyx6wwup1fg" path="res://assets/player.png" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://dnau411wgulhu" path="res://scenes/last_meteor_hit_guide.tscn" id="2_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 15.0
@@ -12,6 +13,7 @@ increased_orbiting_mult = 2.5
 _area = NodePath("Area2D")
 _sprite = NodePath("Sprite2D")
 _sprite_rotation_speed = -0.6
+_last_meteor_hit_guide_scene = ExtResource("2_qhqgy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.03, 0.03)
