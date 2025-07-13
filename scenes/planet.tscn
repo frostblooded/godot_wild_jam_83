@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbtufenvykmg7"]
+
+[ext_resource type="Script" uid="uid://c5oj1mhg38wjv" path="res://scripts/planet.gd" id="1_ggt7d"]
+[ext_resource type="Texture2D" uid="uid://8xcg2e43l8ad" path="res://icon.svg" id="1_h8ms6"]
+[ext_resource type="PackedScene" uid="uid://d14il7b6jkaxx" path="res://scenes/player.tscn" id="2_ggt7d"]
+
+[node name="Planet" type="Node2D" node_paths=PackedStringArray("_player")]
+script = ExtResource("1_ggt7d")
+_player = NodePath("Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_h8ms6")
+
+[node name="Player" parent="." instance=ExtResource("2_ggt7d")]
+position = Vector2(0, -75)
