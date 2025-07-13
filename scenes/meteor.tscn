@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyvgsvhbr1yr4"]
+[gd_scene load_steps=4 format=3 uid="uid://dyvgsvhbr1yr4"]
 
 [ext_resource type="Script" uid="uid://db8wcrdqc6ydl" path="res://scripts/meteor.gd" id="1_pxso2"]
 [ext_resource type="Texture2D" uid="uid://8xcg2e43l8ad" path="res://icon.svg" id="1_tcwo0"]
 
-[node name="Meteor" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_pxso2"]
+radius = 12.0
+
+[node name="Meteor" type="Node2D" groups=["meteorites"]]
 script = ExtResource("1_pxso2")
 _speed = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_tcwo0")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_pxso2")

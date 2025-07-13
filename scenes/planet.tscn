@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbtufenvykmg7"]
+[gd_scene load_steps=6 format=3 uid="uid://bbtufenvykmg7"]
 
 [ext_resource type="Script" uid="uid://c5oj1mhg38wjv" path="res://scripts/planet.gd" id="1_ggt7d"]
 [ext_resource type="Texture2D" uid="uid://8xcg2e43l8ad" path="res://icon.svg" id="1_h8ms6"]
 [ext_resource type="PackedScene" uid="uid://1odw32oe70ww" path="res://scenes/player.tscn" id="2_ggt7d"]
 [ext_resource type="PackedScene" uid="uid://b64pq82usx1ur" path="res://scenes/spawner.tscn" id="4_0k1rn"]
 
-[node name="Planet" type="Node2D" node_paths=PackedStringArray("_player")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0k1rn"]
+radius = 30.0
+
+[node name="Planet" type="Node2D" node_paths=PackedStringArray("_player", "_area")]
 script = ExtResource("1_ggt7d")
 _player = NodePath("Player")
+_area = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -18,3 +22,8 @@ position = Vector2(0, -75)
 
 [node name="Spawner" parent="." instance=ExtResource("4_0k1rn")]
 _spawn_radius = 400.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0k1rn")
