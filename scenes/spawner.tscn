@@ -9,5 +9,3 @@ _spawned_scene = ExtResource("2_ik2nu")
 _timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
