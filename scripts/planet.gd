@@ -32,3 +32,4 @@ func _on_hit(area: Area2D) -> void:
     if area.owner.is_in_group("meteorites"):
         print("Hit by meteorite!")
         area.owner.queue_free()
+        EventBus.lost_life.emit()
