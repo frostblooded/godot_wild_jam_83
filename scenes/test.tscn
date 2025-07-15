@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx22d2ktylxsj"]
+
+[ext_resource type="PackedScene" uid="uid://d4kaa4ayuqbvt" path="res://scenes/repair_pack.tscn" id="1_errlg"]
+
+[node name="Test" type="Node2D"]
+
+[node name="RepairPack" parent="." instance=ExtResource("1_errlg")]
+position = Vector2(314, 216)

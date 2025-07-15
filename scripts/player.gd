@@ -40,6 +40,8 @@ func _on_hit(area: Area2D) -> void:
         EventBus.increased_score.emit(_get_meteor_score_increase())
         _on_meteor_hit_update_last_meteor_hit_guide()
         _angle_since_last_meteor_hit = 0.0
+    elif area.owner.is_in_group("repair_packs"):
+        area.owner.queue_free()
     
 func _update_last_meteor_hit_guide(gained_angle: float) -> void:
     if _last_meteor_hit_guide == null:

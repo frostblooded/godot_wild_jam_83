@@ -6,6 +6,7 @@
 [node name="Spawner" type="Node2D" node_paths=PackedStringArray("_timer")]
 script = ExtResource("1_2vbf6")
 _spawned_scene = ExtResource("2_ik2nu")
+_spawn_radius = 400.0
 _timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="."]

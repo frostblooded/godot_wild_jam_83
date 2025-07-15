@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbtufenvykmg7"]
+[gd_scene load_steps=11 format=3 uid="uid://bbtufenvykmg7"]
 
 [ext_resource type="Script" uid="uid://c5oj1mhg38wjv" path="res://scripts/planet.gd" id="1_ggt7d"]
 [ext_resource type="Texture2D" uid="uid://8xcg2e43l8ad" path="res://icon.svg" id="1_h8ms6"]
 [ext_resource type="Texture2D" uid="uid://dcdtyvj8oys1f" path="res://assets/planet.png" id="2_3s4jt"]
 [ext_resource type="PackedScene" uid="uid://1odw32oe70ww" path="res://scenes/player.tscn" id="2_ggt7d"]
 [ext_resource type="PackedScene" uid="uid://b64pq82usx1ur" path="res://scenes/spawner.tscn" id="4_0k1rn"]
+[ext_resource type="PackedScene" uid="uid://d4kaa4ayuqbvt" path="res://scenes/repair_pack.tscn" id="4_1wmcx"]
 [ext_resource type="Shader" uid="uid://b8vrup4frlrjp" path="res://assets/guide_shader.gdshader" id="4_48b8c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0k1rn"]
@@ -36,8 +37,12 @@ _sprite_rotation_speed = 0.3
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("2_3s4jt")
 
-[node name="Spawner" parent="." instance=ExtResource("4_0k1rn")]
-_spawn_radius = 400.0
+[node name="RepairPackSpawner" parent="." instance=ExtResource("4_0k1rn")]
+_spawned_scene = ExtResource("4_1wmcx")
+_spawn_interval_min = 10.0
+_spawn_interval_max = 20.0
+
+[node name="MeteorSpawner" parent="." instance=ExtResource("4_0k1rn")]
 _spawn_interval_min = 2.5
 _spawn_interval_max = 4.0
 

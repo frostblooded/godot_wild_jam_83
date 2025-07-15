@@ -33,6 +33,7 @@ window/stretch/mode="viewport"
 
 [global_group]
 
+repair_packs=""
 meteorites=""
 
 [input]

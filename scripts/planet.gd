@@ -18,3 +18,6 @@ func _on_hit(area: Area2D) -> void:
     if area.owner.is_in_group("meteorites"):
         area.owner.queue_free()
         EventBus.lost_life.emit()
+    elif area.owner.is_in_group("repair_packs"):
+        area.owner.queue_free()
+        EventBus.gained_life.emit()

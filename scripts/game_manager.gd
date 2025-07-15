@@ -13,10 +13,11 @@ func _ready() -> void:
     _current_lives = _initial_lives
 
 func _enter_tree() -> void:
-    EventBus.lost_life.connect(on_life_lost)
-    EventBus.increased_score.connect(on_score_increased)
+    EventBus.lost_life.connect(_on_lost_life)
+    EventBus.gained_life.connect(_on_gained_life)
+    EventBus.increased_score.connect(_on_increased_score)
 
-func on_life_lost() -> void:
+func _on_lost_life() -> void:
     _current_lives -= 1
 
     if _current_lives > 0:
@@ -24,6 +25,10 @@ func on_life_lost() -> void:
     else:
         _lives_label.text = "GAME OVER"
 
-func on_score_increased(amount: int) -> void:
+func _on_gained_life() -> void:
+    _current_lives += 1
+    _lives_label.text = "Lives: " + str(_current_lives)
+
+func _on_increased_score(amount: int) -> void:
     _current_score += amount
     _score_label.text = "Score: " + str(_current_score)
