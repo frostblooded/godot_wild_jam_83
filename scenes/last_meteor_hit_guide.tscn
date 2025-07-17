@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnau411wgulhu"]
+[gd_scene load_steps=6 format=3 uid="uid://dnau411wgulhu"]
 
 [ext_resource type="Shader" uid="uid://b8vrup4frlrjp" path="res://assets/guide_shader.gdshader" id="1_kih43"]
 [ext_resource type="Texture2D" uid="uid://8xcg2e43l8ad" path="res://icon.svg" id="2_fiqxm"]
+[ext_resource type="Script" uid="uid://coypbye4v2f07" path="res://scripts/last_meteor_hit_guide.gd" id="3_fiqxm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_giin0"]
 shader = ExtResource("1_kih43")
@@ -11,7 +12,15 @@ shader_parameter/thickness = 0.05
 shader_parameter/frequency = 10.0
 shader_parameter/phase = 0.0
 
-[node name="LastMeteorHitGuide" type="Sprite2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_kih43"]
+
+[node name="LastMeteorHitGuide" type="Sprite2D" groups=["last_meteor_hit_guide"]]
 material = SubResource("ShaderMaterial_giin0")
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_fiqxm")
+script = ExtResource("3_fiqxm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kih43")

@@ -12,7 +12,6 @@ extends Node2D
 @export var _reverse_cooldown_timer: Timer
 
 var _angle: float = 0.0
-var _angle_since_last_meteor_hit: float = 0.0
 var _last_meteor_hit_guide: Node2D
 var _orbiting_clockwise: bool = true
 
@@ -24,10 +23,7 @@ func _ready() -> void:
     _orbiting_clockwise = _initial_orbiting_clockwise
 
 func _physics_process(delta: float) -> void:
-    var gained_angle: float = _get_gained_angle(delta)
-    _angle += gained_angle
-    _update_last_meteor_hit_guide(gained_angle)
-
+    _angle += _get_gained_angle(delta)
     position = Globals.get_position_on_circle(Vector2.ZERO, orbiting_radius, _angle)
 
 func _process(delta: float) -> void:
@@ -40,32 +36,29 @@ func _process(delta: float) -> void:
     _sprite.rotate(_sprite_rotation_speed * delta)
 
 func _on_hit(area: Area2D) -> void:
-    if area.owner.is_in_group("meteorites"):
-        area.owner.queue_free()
-        EventBus.increased_score.emit(_get_meteor_score_increase())
-        _on_meteor_hit_update_last_meteor_hit_guide()
-        _angle_since_last_meteor_hit = 0.0
-    elif area.owner.is_in_group("repair_packs"):
-        area.owner.queue_free()
-    
-func _update_last_meteor_hit_guide(gained_angle: float) -> void:
-    if _last_meteor_hit_guide == null:
-        return
-
-    _angle_since_last_meteor_hit += gained_angle
-
-    if _angle_since_last_meteor_hit > PI * 2:
-        _last_meteor_hit_guide.queue_free()
+    if area.owner:
+        if area.owner.is_in_group("meteorites"):
+            area.owner.queue_free()
+            EventBus.increased_score.emit(_get_meteor_score_increase())
+            _on_meteor_hit_update_last_meteor_hit_guide()
+        elif area.owner.is_in_group("repair_packs"):
+            area.owner.queue_free()
+        elif area.owner.is_in_group("last_meteor_hit_guide"):
+            if area.owner.already_entered_by_player:
+                area.owner.queue_free()
+            else:
+                area.owner.already_entered_by_player = true
 
 func _on_meteor_hit_update_last_meteor_hit_guide() -> void:
-    if _last_meteor_hit_guide == null:
-        _last_meteor_hit_guide = _last_meteor_hit_guide_scene.instantiate() as Node2D
-        get_tree().root.add_child(_last_meteor_hit_guide)
+    if _last_meteor_hit_guide:
+        _last_meteor_hit_guide.queue_free()
 
+    _last_meteor_hit_guide = _last_meteor_hit_guide_scene.instantiate() as Node2D
     _last_meteor_hit_guide.global_position = global_position
+    get_tree().root.call_deferred("add_child", _last_meteor_hit_guide)
 
 func _get_meteor_score_increase() -> int:
-    if _angle_since_last_meteor_hit <= PI * 2:
+    if _last_meteor_hit_guide:
         return 2
 
     return 1
