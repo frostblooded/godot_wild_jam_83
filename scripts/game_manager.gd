@@ -26,7 +26,7 @@ func _on_lost_life() -> void:
         _lives_label.text = "GAME OVER"
 
 func _on_gained_life() -> void:
-    _current_lives += 1
+    _current_lives = min(_current_lives + 1, _initial_lives)
     _lives_label.text = "Lives: " + str(_current_lives)
 
 func _on_increased_score(amount: int) -> void:

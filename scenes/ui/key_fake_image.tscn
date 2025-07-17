@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdsio562x2l13"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbgi4"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="KeyFakeImage" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_jyhfs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 7
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbgi4")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Space"
