@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://bbtufenvykmg7"]
 
 [ext_resource type="Script" uid="uid://c5oj1mhg38wjv" path="res://scripts/planet.gd" id="1_ggt7d"]
-[ext_resource type="Texture2D" uid="uid://8xcg2e43l8ad" path="res://icon.svg" id="1_h8ms6"]
 [ext_resource type="Texture2D" uid="uid://dcdtyvj8oys1f" path="res://assets/planet.png" id="2_3s4jt"]
 [ext_resource type="PackedScene" uid="uid://1odw32oe70ww" path="res://scenes/player.tscn" id="2_ggt7d"]
 [ext_resource type="PackedScene" uid="uid://b64pq82usx1ur" path="res://scenes/spawner.tscn" id="4_0k1rn"]
 [ext_resource type="PackedScene" uid="uid://d4kaa4ayuqbvt" path="res://scenes/repair_pack.tscn" id="4_1wmcx"]
 [ext_resource type="Shader" uid="uid://b8vrup4frlrjp" path="res://assets/guide_shader.gdshader" id="4_48b8c"]
+[ext_resource type="Texture2D" uid="uid://c8u8f4wfha13h" path="res://assets/placeholder.png" id="6_1wmcx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0k1rn"]
 radius = 30.0
@@ -27,11 +27,12 @@ shader_parameter/thickness = 0.05
 shader_parameter/frequency = 10.0
 shader_parameter/phase = 0.0
 
-[node name="Planet" type="Node2D" node_paths=PackedStringArray("_area", "_sprite")]
+[node name="Planet" type="Node2D" node_paths=PackedStringArray("_area", "_sprite", "_guide_sprite")]
 script = ExtResource("1_ggt7d")
 _area = NodePath("Area2D")
 _sprite = NodePath("Sprite2D")
 _sprite_rotation_speed = 0.3
+_guide_sprite = NodePath("GuideSprite")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.06, 0.06)
@@ -53,9 +54,9 @@ shape = SubResource("CircleShape2D_0k1rn")
 
 [node name="GuideSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_48b8c")
-scale = Vector2(1.58, 1.58)
-texture = ExtResource("1_h8ms6")
+texture = ExtResource("6_1wmcx")
 
 [node name="Player" parent="." instance=ExtResource("2_ggt7d")]
 material = SubResource("ShaderMaterial_3s4jt")
 position = Vector2(0, -100)
+_increased_orbiting_mult = 2.0

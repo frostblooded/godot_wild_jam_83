@@ -1,9 +1,9 @@
 class_name Player
 extends Node2D
 
-@export var orbiting_radius: float = 100.0
-@export var default_orbiting_speed: float = 1.0
-@export var increased_orbiting_mult: float = 2.0
+@export var _initial_orbiting_radius: float = 100.0
+@export var _default_orbiting_speed: float = 1.0
+@export var _increased_orbiting_mult: float = 2.0
 @export var _area: Area2D
 @export var _sprite: Sprite2D
 @export var _sprite_rotation_speed: float = 1.0
@@ -14,17 +14,23 @@ extends Node2D
 var _angle: float = 0.0
 var _last_meteor_hit_guide: Node2D
 var _orbiting_clockwise: bool = true
+var _orbiting_radius: float = 0.0
 
+func set_orbiting_radius(new_radius: float) -> void:
+    _orbiting_radius = new_radius
+    EventBus.changed_orbiting_radius.emit(new_radius)
+    
 func _enter_tree() -> void:
     _area.area_entered.connect(_on_hit)
 
 func _ready() -> void:
-    position = Vector2(0, orbiting_radius)
+    position = Vector2(0, _orbiting_radius)
     _orbiting_clockwise = _initial_orbiting_clockwise
+    _orbiting_radius = _initial_orbiting_radius
 
 func _physics_process(delta: float) -> void:
     _angle += _get_gained_angle(delta)
-    position = Globals.get_position_on_circle(Vector2.ZERO, orbiting_radius, _angle)
+    position = Globals.get_position_on_circle(Vector2.ZERO, _orbiting_radius, _angle)
 
 func _process(delta: float) -> void:
     if Input.is_action_just_pressed("reverse_player"):
@@ -64,12 +70,12 @@ func _get_meteor_score_increase() -> int:
     return 1
 
 func _get_gained_angle(delta: float) -> float:
-    var used_rotation_speed: float = default_orbiting_speed
+    var used_rotation_speed: float = _default_orbiting_speed
 
     if Input.is_action_pressed("speed_up_player"):
-        used_rotation_speed *= increased_orbiting_mult
+        used_rotation_speed *= _increased_orbiting_mult
 
-    var gained_angle: float = used_rotation_speed * delta
+    var gained_angle: float = used_rotation_speed * delta / (_orbiting_radius / 100)
 
     if !_orbiting_clockwise:
         gained_angle *= -1

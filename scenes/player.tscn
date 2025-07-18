@@ -9,7 +9,7 @@ radius = 15.0
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("_area", "_sprite", "_reverse_cooldown_timer")]
 script = ExtResource("1_g2els")
-increased_orbiting_mult = 2.5
+_increased_orbiting_mult = 2.5
 _area = NodePath("Area2D")
 _sprite = NodePath("Sprite2D")
 _sprite_rotation_speed = -0.6
