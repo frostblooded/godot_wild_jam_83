@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://1odw32oe70ww"]
+[gd_scene load_steps=7 format=3 uid="uid://1odw32oe70ww"]
 
 [ext_resource type="Script" uid="uid://b0pftqqmrhrdh" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cbeyx6wwup1fg" path="res://assets/player.png" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://dnau411wgulhu" path="res://scenes/last_meteor_hit_guide.tscn" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://2pw6q73emsd3" path="res://scripts/powerups/powerup.gd" id="3_qlg0r"]
+[ext_resource type="Resource" uid="uid://dh27shi6t3fcn" path="res://resources/radius_down_powerup.tres" id="4_qlg0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 15.0
@@ -15,6 +17,9 @@ _sprite = NodePath("Sprite2D")
 _sprite_rotation_speed = -0.6
 _last_meteor_hit_guide_scene = ExtResource("2_qhqgy")
 _reverse_cooldown_timer = NodePath("ReverseCooldownTimer")
+_powerups = Dictionary[int, ExtResource("3_qlg0r")]({
+0: ExtResource("4_qlg0r")
+})
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.03, 0.03)

@@ -18,11 +18,11 @@ func _process(delta: float) -> void:
 
 func _on_hit(area: Area2D) -> void:
     if area.owner.is_in_group("meteorites"):
-        area.owner.queue_free()
         EventBus.lost_life.emit()
     elif area.owner.is_in_group("repair_packs"):
-        area.owner.queue_free()
         EventBus.gained_life.emit()
+
+    area.owner.queue_free()
 
 func _on_orbiting_radius_changed(new_radius: float) -> void:
     _guide_sprite.scale.x = new_radius / 100

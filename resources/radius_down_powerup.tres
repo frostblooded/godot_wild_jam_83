@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RadiusDownPowerup" load_steps=2 format=3 uid="uid://dh27shi6t3fcn"]
+
+[ext_resource type="Script" uid="uid://7seps07auqs3" path="res://scripts/powerups/radius_down_powerup.gd" id="1_sx4t0"]
+
+[resource]
+script = ExtResource("1_sx4t0")
+_duration = 5.0
+_radius_multiplier = 0.5
+metadata/_custom_type_script = "uid://7seps07auqs3"

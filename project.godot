@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 EventBus="*res://scripts/globals/event_bus.gd"
 InputManager="*res://scripts/globals/input_manager.gd"
 Globals="*res://scripts/globals/globals.gd"
+Enums="*res://scripts/globals/enums.gd"
 
 [debug]
 
@@ -36,6 +37,7 @@ window/stretch/mode="viewport"
 repair_packs=""
 meteorites=""
 last_meteor_hit_guide=""
+powerups=""
 
 [input]
 

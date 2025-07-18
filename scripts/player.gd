@@ -10,6 +10,7 @@ extends Node2D
 @export var _last_meteor_hit_guide_scene: PackedScene
 @export var _initial_orbiting_clockwise: bool = true
 @export var _reverse_cooldown_timer: Timer
+@export var _powerups: Dictionary[Enums.PowerupType, Powerup] = {}
 
 var _angle: float = 0.0
 var _last_meteor_hit_guide: Node2D
@@ -19,7 +20,15 @@ var _orbiting_radius: float = 0.0
 func set_orbiting_radius(new_radius: float) -> void:
     _orbiting_radius = new_radius
     EventBus.changed_orbiting_radius.emit(new_radius)
-    
+
+func get_initial_orbiting_radius() -> float:
+    return _initial_orbiting_radius
+
+func _apply_powerup(powerup_type: Enums.PowerupType) -> void:
+    var powerup: Powerup = _powerups[powerup_type]
+    assert(powerup, "Powerup of type " + str(powerup_type) + "not found")
+    powerup.apply(self)
+
 func _enter_tree() -> void:
     _area.area_entered.connect(_on_hit)
 
@@ -27,6 +36,7 @@ func _ready() -> void:
     position = Vector2(0, _orbiting_radius)
     _orbiting_clockwise = _initial_orbiting_clockwise
     _orbiting_radius = _initial_orbiting_radius
+    Globals.player = self
 
 func _physics_process(delta: float) -> void:
     _angle += _get_gained_angle(delta)
@@ -48,6 +58,11 @@ func _on_hit(area: Area2D) -> void:
             EventBus.increased_score.emit(_get_meteor_score_increase())
             _on_meteor_hit_update_last_meteor_hit_guide()
         elif area.owner.is_in_group("repair_packs"):
+            area.owner.queue_free()
+        elif area.owner.is_in_group("powerups"):
+            var powerup_projectile: PowerupProjectile = area.owner as PowerupProjectile
+            assert(powerup_projectile)
+            _apply_powerup(area.owner.powerup_type)
             area.owner.queue_free()
         elif area.owner.is_in_group("last_meteor_hit_guide"):
             if area.owner.already_entered_by_player:
