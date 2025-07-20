@@ -13,6 +13,9 @@ func _enter_tree() -> void:
 func _ready() -> void:
     Globals.planet = self
 
+func _exit_tree() -> void:
+    Globals.planet = null
+
 func _process(delta: float) -> void:
     _sprite.rotate(_sprite_rotation_speed * delta)
 

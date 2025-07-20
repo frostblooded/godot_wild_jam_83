@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://obc0is5lhhcw"]
+[gd_scene load_steps=8 format=3 uid="uid://obc0is5lhhcw"]
 
 [ext_resource type="Script" uid="uid://ch4cf2e2us4bi" path="res://scripts/main.gd" id="1_choun"]
 [ext_resource type="PackedScene" uid="uid://bbtufenvykmg7" path="res://scenes/planet.tscn" id="2_0wfyh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwhn1fpb4lq01" path="res://assets/background.png" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bdsio562x2l13" path="res://scenes/ui/key_fake_image.tscn" id="4_tbgi4"]
 [ext_resource type="Script" uid="uid://dyrftpotc7lp3" path="res://scripts/ui.gd" id="4_tefeu"]
+[ext_resource type="PackedScene" uid="uid://cv3yq86dvfx4o" path="res://scenes/outro.tscn" id="7_o6xl0"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_choun")
@@ -98,6 +99,7 @@ layout_mode = 2
 script = ExtResource("3_sugp2")
 _score_label = NodePath("../UI/MarginContainer/StatusUI/ScoreLabel")
 _lives_label = NodePath("../UI/MarginContainer/StatusUI/LivesLabel")
+_outro_scene = ExtResource("7_o6xl0")
 
 [editable path="UI/MarginContainer/ControlsUI/HBoxContainer/BoostSection/KeyFakeImage"]
 [editable path="UI/MarginContainer/ControlsUI/HBoxContainer/ReverseSection/KeyFakeImage"]

@@ -38,6 +38,9 @@ func _ready() -> void:
     _orbiting_radius = _initial_orbiting_radius
     Globals.player = self
 
+func _exit_tree() -> void:
+    Globals.player = null
+
 func _physics_process(delta: float) -> void:
     _angle += _get_gained_angle(delta)
     position = Globals.get_position_on_circle(Vector2.ZERO, _orbiting_radius, _angle)
